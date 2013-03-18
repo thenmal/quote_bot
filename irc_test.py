@@ -65,7 +65,7 @@ class TestBot(irc.bot.SingleServerIRCBot):
         message = e.arguments[0] # always a list with one element
 
         for q in self.quotes:
-            if q.search in message:
+            if q.search in message.lower():
                 if q.enough_time_passed():
                     c.privmsg(channel, q.quote)
                     q.update_time()
@@ -121,7 +121,7 @@ def main():
     server = "irc.freenode.net"
     port = 6667
 
-    channel = "#SpaceGoatsChat"
+    channel = "#SpaceGoatsChatTest"
     nickname = "SpaceGoatsBot"
 
     bot = TestBot(channel, nickname, server, port)
